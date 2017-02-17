@@ -1,0 +1,58 @@
+<?php
+/**
+ * @todo Initialise the view
+ */
+$this->headTitle($title);
+?>
+<p class="login-box-msg">Sign in to start your session</p>
+
+<?php  $form = $loginForm; ?>
+<?php $form->prepare(); ?>
+<?php if (count($aErrors)) : ?>
+    <div class="alert alert-danger">
+    <?php foreach ($aErrors as $aError): ?>
+        <?php if(is_array($aError)): ?>
+            <?php foreach ($aError as $sMessage): ?>
+                <p><?php echo $sMessage; ?></p>
+            <?php endforeach;?>
+        <?php else: ?>
+                <p><?php echo $aError; ?></p>
+        <?php endif; ?>
+    <?php endforeach;?>
+    </div>
+<?php endif; ?>
+
+
+<?php echo $this->form()->openTag($form)?>
+<div
+	class="form-group has-feedback  <?php echo count($form->get('uname')->getMessages()) > 0 ? 'has-error' : '' ?>">
+	<?php echo $this->formelement($form->get('uname'))?> <span
+		class="glyphicon glyphicon-user form-control-feedback"></span>
+
+	<?php
+echo $this->formElementErrors()
+    ->setMessageOpenFormat('<div  class="alert alert-danger" role="alert">')
+    ->setMessageSeparatorString('</div><div  class="alert alert-danger" role="alert">')
+    ->setMessageCloseString('</div>')
+    ->render($form->get('uname'));
+?>
+</div>
+<div class="form-group has-feedback">
+	<?php echo $this->formelement($form->get('passwd'))?>  <span
+		class="glyphicon glyphicon-lock form-control-feedback"></span>
+</div>
+<div class="row">
+	<div class="col-xs-8">
+		<div class="checkbox icheck">
+			<label> <input type="checkbox"> Remember Me
+			</label>
+		</div>
+	</div>
+	<!-- /.col -->
+	<div class="col-xs-4 text-right">
+		<?php echo $this->formElement($form->get('token')); ?>
+		<?php echo $this->formElement($form->get('submit')); ?>
+	</div>
+	<!-- /.col -->
+</div>
+<?php echo $this->form()->closeTag()?>

@@ -1,0 +1,87 @@
+<?php $form = $this->form; ?>
+<?php $form->prepare(); ?>
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <h3 class="box-title"><?php echo $this->title; ?></h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <?php echo $this->form()->openTag($form) ?>
+        <?php echo $this->formElement($form->get('barid')); ?>
+
+        <div class="form-group <?php echo count($form->get('barname')->getMessages()) > 0 ? 'has-error' : '' ?>">
+            <label><?php echo $this->formLabel($form->get('barname')); ?></label> 
+            <?php echo $this->formElement($form->get('barname')); ?>
+            <?php
+            echo $this->formElementErrors()
+                    ->setMessageOpenFormat('<div  class="alert alert-danger" role="alert">')
+                    ->setMessageSeparatorString('</div><div  class="alert alert-danger" role="alert">')
+                    ->setMessageCloseString('</div>')
+                    ->render($form->get('barname'));
+            ?>
+        </div>
+
+        <!-- textarea -->
+        <div class="form-group <?php echo count($form->get('description')->getMessages()) > 0 ? 'has-error' : '' ?>">
+
+            <?php echo $this->formLabel($form->get('description')); ?>
+            <?php echo $this->formElement($form->get('description')); ?>                
+            <?php echo $this->formElementErrors($form->get('description')); ?>
+        </div>
+
+
+
+        <div class="form-group <?php echo count($form->get('lat')->getMessages()) > 0 ? 'has-error' : '' ?>">
+            <label><?php echo $this->formLabel($form->get('lat')); ?></label> 
+            <?php echo $this->formElement($form->get('lat')); ?>				           
+            <?php echo $this->formElementErrors($form->get('lat')); ?>
+        </div>
+
+
+        <div class="form-group <?php echo count($form->get('lng')->getMessages()) > 0 ? 'has-error' : '' ?>">
+            <label><?php echo $this->formLabel($form->get('lng')); ?></label> 
+            <?php echo $this->formElement($form->get('lng')); ?>				           
+            <?php echo $this->formElementErrors($form->get('lng')); ?>
+        </div>
+
+
+        <div class="form-group <?php echo count($form->get('defaultphoto')->getMessages()) > 0 ? 'has-error' : '' ?>">
+            <label><?php echo $this->formLabel($form->get('defaultphoto')); ?></label> 
+            <?php echo $this->formElement($form->get('defaultphoto')); ?>				           
+            <?php echo $this->formElementErrors($form->get('defaultphoto')); ?>
+        </div>
+
+        <div class="form-group <?php echo count($form->get('malepercent')->getMessages()) > 0 ? 'has-error' : '' ?>">
+            <label><?php echo $this->formLabel($form->get('malepercent')); ?></label> 
+            <?php echo $this->formElement($form->get('malepercent')); ?>				           
+            <?php echo $this->formElementErrors($form->get('malepercent')); ?>
+        </div>
+        <div class="form-group ">
+            <label>Female percent</label> 
+            <input type="text" id="femalepercent" disabled class="form-control" >
+        </div>
+
+        <div class="form-group <?php echo count($form->get('status')->getMessages()) > 0 ? 'has-error' : '' ?>">
+            <div style="margin-left: -20px"><?php echo $this->formLabel($form->get('status')); ?></div>
+            <?php echo $this->formElement($form->get('status')); ?>				           
+            <?php echo $this->formElementErrors($form->get('status')); ?>
+        </div>
+
+        <div class="form-group">
+            <?php echo $this->formElement($form->get('submit')); ?>
+        </div>
+
+        <?php echo $this->form()->closeTag() ?>
+    </div>
+    <!-- /.box-body -->
+    <script type="text/javascript">
+        function setFemalePercent(val) {
+            var malepercent = parseFloat(val);
+            if (isNaN(malepercent)) {
+                malepercent = 0.0;
+            }
+            var femalepercent = 100.0 - malepercent;
+            $("#femalepercent").val(femalepercent.toFixed(2));
+        }
+    </script>
+</div>

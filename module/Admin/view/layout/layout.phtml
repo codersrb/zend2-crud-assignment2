@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php echo $this->headTitle('Admin Panel')->setSeparator(' - ')->setAutoEscape(false)?>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+        <?php
+	        echo $this->headLink(array(
+	            'rel' => 'shortcut icon',
+	            'type' => 'image/vnd.microsoft.icon',
+	            'href' => $this->basePath() . '/img/favicon.ico'
+	        ))
+			->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
+			->appendStylesheet($this->basePath() . '/dist/css/AdminLTE.min.css')
+			->appendStylesheet($this->basePath() . '/dist/css/skins/_all-skins.min.css')
+			->appendStylesheet('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+		?>
+
+        <?php
+
+        echo $this->headScript()
+
+            ->appendFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+            ->appendFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9'))
+			->appendFile($this->basePath() . '/js/jquery.min.js')
+			->appendFile($this->basePath() . '/js/bootstrap.min.js')
+			->appendFile($this->basePath() . '/dist/js/demo.js')
+			->appendFile($this->basePath() . '/dist/js/app.min.js')
+			->appendFile($this->basePath() . '/plugins/fastclik/fastclik.min.js')
+			->appendFile($this->basePath() . '/plugins/slimScroll/jquery.slimscroll.min.js')
+			->appendFile($this->basePath() . '/plugins/chartjs/Chart.min.js');
+        ?>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<header class="main-header">
+			<!-- Logo -->
+			<a href="<?php echo $this->url('home') ?>" class="logo">
+				<span class="logo-mini"><b>AP</b></span>
+				<span class="logo-lg"><b>Admin Panel</b></span>
+			</a>
+
+			<nav class="navbar navbar-static-top" role="navigation">
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+					role="button"> <span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+				</a>
+			</nav>
+		</header>
+
+		<!-- =============================================== -->
+
+		<aside class="main-sidebar">
+			<section class="sidebar">
+				<?php if (!empty($this->layout()->identity))
+				{
+					?>
+					<ul class="sidebar-menu">
+						<li class="header">MAIN NAVIGATION</li>
+						<li><a href="<?php echo $this->url('home'); ?>"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a></li>
+
+						<li class="treeview active"><a href="#"> <i class="fa fa-user"></i>
+								<span>Users</span>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="<?php echo $this->url('user-admin');?>"><i
+										class="fa fa-user"></i> All Users</a></li>
+								<li><a
+									href="<?php echo $this->url('user-admin' , array('action'=>'add'));?>"><i
+										class="fa fa-user"></i> Add User</a></li>
+							</ul>
+						</li>
+
+						<li><a href="<?php echo $this->url('logout');?>"> <i
+								class="fa fa-sign-out"></i> <span>Logout</span>
+						</a></li>
+
+					</ul>
+			<?php
+			}
+
+			else
+			{
+				?>
+				<ul class="sidebar-menu">
+						<li><a href="<?php echo $this->url('admin-login'); ?>"> <i
+								class="fa fa-lock"></i> <span>Login</span>
+						</a></li>
+				</ul>
+			<?php
+			}
+			?>
+			</section>
+		</aside>
+
+
+		<!-- =============================================== -->
+
+		<div class="content-wrapper">
+			<section class="content">
+				<?php echo $this->content; ?>
+        	</section>
+		</div>
+
+		<footer class="main-footer">
+        	<div class="pull-right hidden-xs">
+          		<b>Version</b> 2.3.0
+        	</div>
+
+			<strong>Copyright &copy; <?php echo date('Y'); ?> Admin Panel</strong>
+      </footer
+
+	</div>
+  </body>
+</html>

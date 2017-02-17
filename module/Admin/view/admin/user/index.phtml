@@ -1,0 +1,75 @@
+<?php
+/**
+ * @todo Initialise the view
+ */
+$this->headTitle($title);
+?>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Users listing</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="barlist" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID #</th>
+                            <th>Full name</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Added On</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						<?php
+						if($users)
+						{
+							foreach($users as $user)
+							{
+								?>
+								<tr>
+									<td><?php echo $user['pkUserID']; ?></td>
+									<td><?php echo $user['userFullName']; ?></td>
+									<td><?php echo $user['userEmail']; ?></td>
+									<td><?php echo ( $user['userGender'] ) ? 'Male' : 'Female'; ?></td>
+									<td><?php echo $user['userAdded']; ?></td>
+									<td><?php echo ( $user['userStatus'] ) ? 'Active' : 'Inactive'; ?></td>
+									<td>
+										<a href="<?php echo $this->url('user-admin', array('action' => 'view' , 'id'=> $user['pkUserID'])); ?>" class="btn btn-flat btn-sm btn-info">
+											<i class="fa fa-eye"></i>
+										</a>
+
+										<a href="<?php echo $this->url('user-admin', array('action' => 'edit' , 'id'=> $user['pkUserID'])); ?>" class="btn btn-flat btn-sm btn-primary">
+											<i class="fa fa-pencil"></i>
+										</a>
+
+										<a href="<?php echo $this->url('user-admin', array('action' => 'delete' , 'id'=> $user['pkUserID'])); ?>" class="btn btn-flat btn-sm btn-danger">
+											<i class="fa fa-trash"></i>
+										</a>
+									</td>
+								</tr>
+								<?php
+							}
+						}
+						?>
+                    </tbody>
+					<tfoot>
+                        <tr>
+                            <th>ID #</th>
+                            <th>Full name</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Added On</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
